@@ -1,0 +1,33 @@
+p {
+  font-size: x-large;
+}
+form {
+  padding-top: 80px;
+  padding-left: 80px;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+}
+h5 {
+  color: gray;
+}
+.card {
+  display: block;
+  margin: 0 auto;
+}
+.card-title {
+  text-align: left;
+  font-size: 66px;
+}
+.high {
+  color: red;
+}
+.low {
+  color: blue;
+}
+#current {
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}

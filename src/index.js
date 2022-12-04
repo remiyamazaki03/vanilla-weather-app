@@ -18,6 +18,8 @@ let month = months[today.getMonth()];
 let date = today.getDate();
 let hour = today.getHours();
 let minute = today.getMinutes().toString().padStart(2, "0");
+let timestamp = document.querySelector("#display");
+timestamp.innerHTML = `${month} ${date} ${hour}:${minute}`;
 //
 let cityInput = document.querySelector("#city");
 function showCity(event) {

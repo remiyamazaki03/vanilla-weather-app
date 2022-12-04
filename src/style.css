@@ -25,6 +25,10 @@ h5 {
 .low {
   color: blue;
 }
+.link {
+  text-align: center;
+  padding: 20px;
+}
 #current {
   max-width: 600px;
   display: block;

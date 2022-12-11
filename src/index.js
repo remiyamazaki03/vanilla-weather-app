@@ -1,4 +1,4 @@
-let apiKey = "0ebc654fccbc00189d5408f3d6f15b08";
+let apiKey = "8a32636a9f2a4b34c0df70a3a3to1b99";
 let cityInput = document.querySelector("#city");
 function formatDate() {
   let today = new Date();
@@ -21,23 +21,23 @@ function formatDate() {
   ];
   let month = months[today.getMonth()];
   let timestamp = document.querySelector("#timeDisplay");
-  timestamp.innerHTML = `${month} ${date} ${hour}:${minute}`;
+  timestamp.innerHTML = `Last updated: ${month} ${date}, ${hour}:${minute}`;
 }
 function showCity(event) {
   event.preventDefault();
   document.querySelector("#cityDisplay").innerHTML = cityInput.value;
 }
 function handleApi() {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityInput.value}&key=${apiKey}&units=metric`;
   function showTemp(response) {
     document.querySelector(".average").innerHTML = Math.round(
-      response.data.main.temp
+      response.data.daily[0].temperature.day
     );
     document.querySelector(".high").innerHTML = `${Math.round(
-      response.data.main.temp_max
+      response.data.daily[0].temperature.maximum
     )}°C`;
     document.querySelector(".low").innerHTML = `${Math.round(
-      response.data.main.temp_min
+      response.data.daily[0].temperature.minimum
     )}°C`;
   }
   axios.get(apiUrl).then(showCity);
@@ -47,34 +47,34 @@ function handleApiF(event) {
   event.preventDefault();
   function toFahrenheit(response) {
     document.querySelector(".average").innerHTML = Math.round(
-      response.data.main.temp
+      response.data.daily[0].temperature.day
     );
     document.querySelector(".high").innerHTML = `${Math.round(
-      response.data.main.temp_max
+      response.data.daily[0].temperature.maximum
     )}°F`;
     document.querySelector(".low").innerHTML = `${Math.round(
-      response.data.main.temp_min
+      response.data.daily[0].temperature.minimum
     )}°F`;
   }
   let newCity = document.querySelector("#cityDisplay").innerHTML;
-  let apiUrlF = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=${apiKey}&units=imperial`;
+  let apiUrlF = `https://api.shecodes.io/weather/v1/forecast?query=${newCity}&key=${apiKey}&units=imperial`;
   axios.get(apiUrlF).then(toFahrenheit);
 }
 function handleApiC(event) {
   event.preventDefault();
   function toCelsius(response) {
     document.querySelector(".average").innerHTML = Math.round(
-      response.data.main.temp
+      response.data.daily[0].temperature.day
     );
     document.querySelector(".high").innerHTML = `${Math.round(
-      response.data.main.temp_max
+      response.data.daily[0].temperature.maximum
     )}°C`;
     document.querySelector(".low").innerHTML = `${Math.round(
-      response.data.main.temp_min
+      response.data.daily[0].temperature.minimum
     )}°C`;
   }
   let newCity = document.querySelector("#cityDisplay").innerHTML;
-  let apiUrlC = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=${apiKey}&units=metric`;
+  let apiUrlC = `https://api.shecodes.io/weather/v1/forecast?query=${newCity}&key=${apiKey}&units=metric`;
   axios.get(apiUrlC).then(toCelsius);
 }
 function currentLocation() {
@@ -95,7 +95,8 @@ function currentLocation() {
         response.data.main.temp_min
       )}°C`;
     }
-    let apiUrlLL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    let apiUrlLL = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apikey}&units=metric`;
+    //
     axios.get(apiUrlLL).then(showCity);
     axios.get(apiUrlLL).then(showTemp);
   }
@@ -107,3 +108,4 @@ document.querySelector("#enterCity").addEventListener("submit", showCity);
 document.querySelector("#toCelsius").addEventListener("click", handleApiC);
 document.querySelector("#toFahrenheit").addEventListener("click", handleApiF);
 document.querySelector("#current").addEventListener("click", currentLocation);
+//put in #weatherDisplay handling into functions

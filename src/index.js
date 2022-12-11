@@ -49,7 +49,7 @@ function showTemp(response) {
   weatherDisplay.innerHTML = response.data.daily[0].condition.description;
   iconDisplay.setAttribute(
     "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.daily[0].condition.icon}.png`
+    `https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.daily[0].condition.icon}.png`
   );
   iconDisplay.setAttribute("alt", response.data.daily[0].condition.description);
 }

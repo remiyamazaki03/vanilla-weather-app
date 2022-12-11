@@ -37,17 +37,16 @@ function prevent(event) {
 
 function handleApi() {
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityInput.value}&key=${apiKey}&units=metric`;
-  function showTemp(response) {
-    average.innerHTML = Math.round(response.data.daily[0].temperature.day);
-    high.innerHTML = `${Math.round(
-      response.data.daily[0].temperature.maximum
-    )}°C`;
-    low.innerHTML = `${Math.round(
-      response.data.daily[0].temperature.minimum
-    )}°C`;
-    cityDisplay.innerHTML = `${response.data.city}, ${response.data.country}`;
-  }
   axios.get(apiUrl).then(showTemp);
+}
+function showTemp(response) {
+  average.innerHTML = Math.round(response.data.daily[0].temperature.day);
+  high.innerHTML = `${Math.round(
+    response.data.daily[0].temperature.maximum
+  )}°C`;
+  low.innerHTML = `${Math.round(response.data.daily[0].temperature.minimum)}°C`;
+  cityDisplay.innerHTML = `${response.data.city}, ${response.data.country}`;
+  weatherDisplay.innerHTML = response.data.daily[0].condition.description;
 }
 function handleApiF(event) {
   event.preventDefault();
@@ -83,18 +82,13 @@ function currentLocation() {
   function inputLocation(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
-    function showTemp(response) {
-      average.innerHTML = Math.round(response.data.daily[0].temperature.day);
-      high.innerHTML = `${Math.round(
-        response.data.daily[0].temperature.maximum
-      )}°C`;
-      low.innerHTML = `${Math.round(
-        response.data.daily[0].temperature.minimum
-      )}°C`;
-      cityDisplay.innerHTML = `${response.data.city}, ${response.data.country}`;
-    }
     let apiUrlLL = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
-    axios.get(apiUrlLL).then(showTemp);
+    function convertCity(response) {
+      newCity = response.data.city;
+      let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${newCity}&key=${apiKey}&units=metric`;
+      axios.get(apiUrl).then(showTemp);
+    }
+    axios.get(apiUrlLL).then(convertCity);
   }
   navigator.geolocation.getCurrentPosition(inputLocation);
 }

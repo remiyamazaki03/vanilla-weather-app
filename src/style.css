@@ -62,8 +62,7 @@ form {
 #toFahrenheit:hover {
   text-shadow: 2px 2px 5px blue;
 }
-#cityDisplay,
-#iconDisplay {
+#cityDisplay {
   color: gray;
   padding: 20px 0px 20px 5px;
   font-size: 42px;

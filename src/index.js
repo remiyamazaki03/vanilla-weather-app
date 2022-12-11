@@ -3,7 +3,7 @@ let cityInput = document.querySelector("#city");
 let cityDisplay = document.querySelector("#cityDisplay");
 let countryDisplay = document.querySelector("#countryDisplay");
 let weatherDisplay = document.querySelector("#weatherDisplay");
-let iconDisplay = document.querySelector("#weatherDisplay");
+let iconDisplay = document.querySelector("#icon");
 let average = document.querySelector("#average");
 let high = document.querySelector("#high");
 let low = document.querySelector("#low");
@@ -47,6 +47,11 @@ function showTemp(response) {
   low.innerHTML = `${Math.round(response.data.daily[0].temperature.minimum)}°C`;
   cityDisplay.innerHTML = `${response.data.city}, ${response.data.country}`;
   weatherDisplay.innerHTML = response.data.daily[0].condition.description;
+  iconDisplay.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.daily[0].condition.icon}.png`
+  );
+  iconDisplay.setAttribute("alt", response.data.daily[0].condition.description);
 }
 function handleApiF(event) {
   event.preventDefault();

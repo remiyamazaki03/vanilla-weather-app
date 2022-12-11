@@ -1,26 +1,28 @@
 let apiKey = "0ebc654fccbc00189d5408f3d6f15b08";
-let today = new Date();
-let months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-let month = months[today.getMonth()];
-let date = today.getDate();
-let hour = today.getHours();
-let minute = today.getMinutes().toString().padStart(2, "0");
-let timestamp = document.querySelector("#display");
-timestamp.innerHTML = `${month} ${date} ${hour}:${minute}`;
 let cityInput = document.querySelector("#city");
+function formatDate() {
+  let today = new Date();
+  let minute = today.getMinutes().toString().padStart(2, "0");
+  let hour = today.getHours();
+  let date = today.getDate();
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let month = months[today.getMonth()];
+  let timestamp = document.querySelector("#timeDisplay");
+  timestamp.innerHTML = `${month} ${date} ${hour}:${minute}`;
+}
 function showCity(event) {
   event.preventDefault();
   document.querySelector("#cityDisplay").innerHTML = cityInput.value;
@@ -66,10 +68,10 @@ function handleApiC(event) {
     );
     document.querySelector(".high").innerHTML = `${Math.round(
       response.data.main.temp_max
-    )}°F`;
+    )}°C`;
     document.querySelector(".low").innerHTML = `${Math.round(
       response.data.main.temp_min
-    )}°F`;
+    )}°C`;
   }
   let newCity = document.querySelector("#cityDisplay").innerHTML;
   let apiUrlC = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=${apiKey}&units=metric`;
@@ -99,6 +101,7 @@ function currentLocation() {
   }
   navigator.geolocation.getCurrentPosition(inputLocation);
 }
+formatDate();
 document.querySelector("#enterCity").addEventListener("submit", handleApi);
 document.querySelector("#enterCity").addEventListener("submit", showCity);
 document.querySelector("#toCelsius").addEventListener("click", handleApiC);

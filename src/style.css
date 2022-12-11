@@ -62,3 +62,12 @@ form {
   position: relative;
   left: 5px;
 }
+#toCelsius,
+#toFahrenheit {
+  text-decoration: none;
+  color: blue;
+}
+#toCelsius:hover,
+#toFahrenheit:hover {
+  text-shadow: 2px 2px 5px blue;
+}

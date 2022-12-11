@@ -14,43 +14,58 @@
   </head>
   <body>
     <div class="container">
-      <form id="enterCity">
-        <div class="row">
-          <div class="col">
-            <input
-              type="text"
-              class="form-control"
-              id="city"
-              placeholder="Enter a city"
-            />
+      <div class="wrap">
+        <div class="vanilla-weather-app">
+          <form id="enterCity">
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="city"
+                  placeholder="Enter a city"
+                />
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-primary" id="search">
+                  Search
+                </button>
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-success" id="current">Current</button>
+          <br />
+          <div class="card" style="width: 30rem">
+            <div class="card-body">
+              <div class="row labels">
+                <div class="col-8" id="display">Oct 26 12:36</div>
+                <div class="col-4">&nbsp; Clear</div>
+              </div>
+              <div class="row">
+                <div class="col-8">
+                  <h5 class="card-title" id="cityDisplay">Enter a city</h5>
+                </div>
+                <div class="col-4">
+                  <h5 class="card-title">☀️</h5>
+                </div>
+              </div>
+              <p class="card-text">
+                <span class="average">0</span
+                ><a href="#" id="toCelsius">°C</a> |
+                <a href="#" id="toFahrenheit">°F</a> (
+                <span class="high">0°C</span> / <span class="low">0°C</span> )
+              </p>
+              <p>☀️ ☀️ ☀️ ☀️ ☀️</p>
+            </div>
           </div>
-          <div class="col">
-            <button type="submit" class="btn btn-primary">Search</button>
+          <div class="link">
+            <a href="https://github.com/remiyamazaki03/vanilla-weather-app"
+              >Open-source code</a
+            >
+            by Remi
           </div>
-        </div>
-      </form>
-      <button class="btn btn-success" id="current">Current</button>
-      <br />
-      <div class="card" style="width: 30rem">
-        <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-muted" id="display">
-            Oct 26 12:36
-          </h6>
-          <h5 class="card-title" id="cityDisplay">City ☀️</h5>
-          <p class="card-text">
-            <span class="average">XX</span><a href="#" id="toCelsius">°C</a> |
-            <a href="#" id="toFahrenheit">°F</a> (
-            <span class="high">YY°C</span> / <span class="low">ZZ°C</span> )
-          </p>
-          <p>☀️ ☀️ ☀️ ☀️ ☀️</p>
         </div>
       </div>
-    </div>
-    <div class="link">
-      <a href="https://github.com/remiyamazaki03/vanilla-weather-app"
-        >Open-source code</a
-      >
-      by Remi
     </div>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <script src="src/index.js"></script>

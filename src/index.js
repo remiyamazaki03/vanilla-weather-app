@@ -7,6 +7,8 @@ let iconDisplay = document.querySelector("#icon");
 let average = document.querySelector("#average");
 let high = document.querySelector("#high");
 let low = document.querySelector("#low");
+let celsiusLink = document.querySelector("#toCelsius");
+let fahrenheitLink = document.querySelector("#toFahrenheit");
 function formatDate() {
   let today = new Date();
   let minute = today.getMinutes().toString().padStart(2, "0");
@@ -30,12 +32,8 @@ function formatDate() {
   let timestamp = document.querySelector("#timeDisplay");
   timestamp.innerHTML = `Last updated: ${month} ${date}, ${hour}:${minute}`;
 }
-
-function prevent(event) {
+function handleApi(event) {
   event.preventDefault();
-}
-
-function handleApi() {
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityInput.value}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemp);
 }
@@ -63,6 +61,8 @@ function handleApiF(event) {
     low.innerHTML = `${Math.round(
       response.data.daily[0].temperature.minimum
     )}°F`;
+    celsiusLink.classList.remove("active");
+    fahrenheitLink.classList.add("active");
   }
   let newCity = document.querySelector("#cityDisplay").innerHTML;
   let apiUrlF = `https://api.shecodes.io/weather/v1/forecast?query=${newCity}&key=${apiKey}&units=imperial`;
@@ -78,6 +78,8 @@ function handleApiC(event) {
     low.innerHTML = `${Math.round(
       response.data.daily[0].temperature.minimum
     )}°C`;
+    celsiusLink.classList.add("active");
+    fahrenheitLink.classList.remove("active");
   }
   let newCity = document.querySelector("#cityDisplay").innerHTML;
   let apiUrlC = `https://api.shecodes.io/weather/v1/forecast?query=${newCity}&key=${apiKey}&units=metric`;
@@ -98,7 +100,6 @@ function currentLocation() {
   navigator.geolocation.getCurrentPosition(inputLocation);
 }
 formatDate();
-document.querySelector("#enterCity").addEventListener("submit", prevent);
 document.querySelector("#enterCity").addEventListener("submit", handleApi);
 document.querySelector("#toCelsius").addEventListener("click", handleApiC);
 document.querySelector("#toFahrenheit").addEventListener("click", handleApiF);

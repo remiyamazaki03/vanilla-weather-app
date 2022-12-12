@@ -50,6 +50,7 @@ function showTemp(response) {
     `https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.daily[0].condition.icon}.png`
   );
   iconDisplay.setAttribute("alt", response.data.daily[0].condition.description);
+  celsiusLink.classList.add("active");
 }
 function handleApiF(event) {
   event.preventDefault();

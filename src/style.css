@@ -9,7 +9,7 @@ form {
   margin: 0 auto;
 }
 .active {
-  text-decoration: none;
+  text-shadow: 2px 2px 5px blue;
 }
 .card {
   display: block;
@@ -59,6 +59,7 @@ form {
 #toCelsius,
 #toFahrenheit {
   color: blue;
+  text-decoration: none;
 }
 #toCelsius:hover,
 #toFahrenheit:hover {

@@ -51,6 +51,7 @@ function showTemp(response) {
   );
   iconDisplay.setAttribute("alt", response.data.daily[0].condition.description);
   celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
 function handleApiF(event) {
   event.preventDefault();

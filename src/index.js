@@ -101,7 +101,17 @@ function currentLocation() {
   }
   navigator.geolocation.getCurrentPosition(inputLocation);
 }
+function showForecast(){
+  let dates = ["22", "23", "24"];
+  let forecastDisplay=document.querySelector("#weeklyForecast");
+  let forecastHTML="";
+  dates.forEach(function(date){
+    forecastHTML=forecastHTML+`<div class="col-2">☀️<br>Oct ${date}<br><span class="high">18</span>/<span class="low">12</span></div>`;
+    forecastDisplay.innerHTML=forecastHTML;
+  })
+}
 formatDate();
+showForecast();
 document.querySelector("#enterCity").addEventListener("submit", handleApi);
 document.querySelector("#toCelsius").addEventListener("click", handleApiC);
 document.querySelector("#toFahrenheit").addEventListener("click", handleApiF);

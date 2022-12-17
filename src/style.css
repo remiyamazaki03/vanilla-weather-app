@@ -7,7 +7,7 @@ p {
 }
 form {
   padding-top: 80px;
-  width: 35rem;
+  max-width: 35rem;
   display: block;
   margin: 0 auto;
 }
@@ -28,7 +28,7 @@ form {
   margin: 0 auto;
   margin-top: 20px;
   padding: 15px;
-  width: 35rem;
+  max-width: 35rem;
 }
 .forecast {
   text-align: center;

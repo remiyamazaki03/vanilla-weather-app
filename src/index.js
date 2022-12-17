@@ -74,6 +74,7 @@ function showTemp(response) {
   )}m/s`;
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
+  cityInput.value = "";
   displayForecast(response);
 }
 function handleApiF(event) {

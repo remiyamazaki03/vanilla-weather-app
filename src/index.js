@@ -30,7 +30,7 @@ function formatDate() {
   let date = today.getDate();
   let month = months[today.getMonth()];
   let timestamp = document.querySelector("#timeDisplay");
-  timestamp.innerHTML = `Last updated: ${month} ${date}, ${hour}:${minute}`;
+  timestamp.innerHTML = `Today: ${month} ${date}, ${hour}:${minute}`;
 }
 function handleApi(event) {
   event.preventDefault();
@@ -53,7 +53,7 @@ function showTemp(response) {
     let weeklyForecast = response.data.daily;
     let forecastDisplay = document.querySelector("#weeklyForecast");
     let forecastHTML = "";
-    weeklyForecast.forEach(function (date, index) {
+    weeklyForecast.slice(1).forEach(function (date, index) {
       if (index < 6) {
         forecastHTML =
           forecastHTML +

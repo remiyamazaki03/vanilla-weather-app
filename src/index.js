@@ -5,8 +5,8 @@ let countryDisplay = document.querySelector("#countryDisplay");
 let weatherDisplay = document.querySelector("#weatherDisplay");
 let iconDisplay = document.querySelector("#icon");
 let average = document.querySelector("#average");
-let high = document.querySelector("#high");
-let low = document.querySelector("#low");
+let high = document.querySelector("#highToday");
+let low = document.querySelector("#lowToday");
 let celsiusLink = document.querySelector("#toCelsius");
 let fahrenheitLink = document.querySelector("#toFahrenheit");
 function formatDate() {
@@ -101,14 +101,16 @@ function currentLocation() {
   }
   navigator.geolocation.getCurrentPosition(inputLocation);
 }
-function showForecast(){
+function showForecast() {
   let dates = ["22", "23", "24"];
-  let forecastDisplay=document.querySelector("#weeklyForecast");
-  let forecastHTML="";
-  dates.forEach(function(date){
-    forecastHTML=forecastHTML+`<div class="col-2">☀️<br>Oct ${date}<br><span class="high">18</span>/<span class="low">12</span></div>`;
-    forecastDisplay.innerHTML=forecastHTML;
-  })
+  let forecastDisplay = document.querySelector("#weeklyForecast");
+  let forecastHTML = "";
+  dates.forEach(function (date) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">☀️<br>Oct ${date}<br><span class="high">18</span>/<span class="low">12</span></div>`;
+    forecastDisplay.innerHTML = forecastHTML;
+  });
 }
 formatDate();
 showForecast();

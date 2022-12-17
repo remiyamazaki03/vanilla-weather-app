@@ -91,21 +91,24 @@ function showForecast() {
     let weeklyForecast = response.data.daily;
     let forecastDisplay = document.querySelector("#weeklyForecast");
     let forecastHTML = "";
-    weeklyForecast.forEach(function (date) {
-      forecastHTML =
-        forecastHTML +
-        `<div class="col-2"><img src="${
-          date.condition.icon_url
-        }" alt="weather icon"><br>${
-          date.time
-        }<br><span class="high">${Math.round(
-          date.temperature.maximum
-        )}</span>/<span class="low">${Math.round(
-          date.temperature.minimum
-        )}</span></div>`;
-      forecastDisplay.innerHTML = forecastHTML;
+    weeklyForecast.forEach(function (date, index) {
+      if (index < 6) {
+        forecastHTML =
+          forecastHTML +
+          `<div class="col-2"><img src="${
+            date.condition.icon_url
+          }" alt="weather icon" class="icon"><br>${
+            date.time
+          }<br><span class="high">${Math.round(
+            date.temperature.maximum
+          )}</span>/<span class="low">${Math.round(
+            date.temperature.minimum
+          )}</span></div>`;
+        forecastDisplay.innerHTML = forecastHTML;
+      }
     });
   }
+
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityInput.value}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }

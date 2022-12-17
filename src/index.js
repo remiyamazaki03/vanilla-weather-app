@@ -37,6 +37,27 @@ function handleApi(event) {
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityInput.value}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemp);
 }
+function displayForecast(response) {
+  let weeklyForecast = response.data.daily;
+  let forecastDisplay = document.querySelector("#weeklyForecast");
+  let forecastHTML = "";
+  weeklyForecast.slice(1).forEach(function (date, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2"><img src="${
+          date.condition.icon_url
+        }" alt="weather icon" class="icon"><br>${convertTimestamp(
+          date.time
+        )}<br><span class="high">${Math.round(
+          date.temperature.maximum
+        )}° </span>|<span class="low"> ${Math.round(
+          date.temperature.minimum
+        )}°</span></div>`;
+      forecastDisplay.innerHTML = forecastHTML;
+    }
+  });
+}
 function showTemp(response) {
   average.innerHTML = Math.round(response.data.daily[0].temperature.day);
   high.innerHTML = `${Math.round(
@@ -49,27 +70,6 @@ function showTemp(response) {
   iconDisplay.setAttribute("alt", response.data.daily[0].condition.description);
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
-  function displayForecast(response) {
-    let weeklyForecast = response.data.daily;
-    let forecastDisplay = document.querySelector("#weeklyForecast");
-    let forecastHTML = "";
-    weeklyForecast.slice(1).forEach(function (date, index) {
-      if (index < 6) {
-        forecastHTML =
-          forecastHTML +
-          `<div class="col-2"><img src="${
-            date.condition.icon_url
-          }" alt="weather icon" class="icon"><br>${convertTimestamp(
-            date.time
-          )}<br><span class="high">${Math.round(
-            date.temperature.maximum
-          )}° </span>|<span class="low"> ${Math.round(
-            date.temperature.minimum
-          )}°</span></div>`;
-        forecastDisplay.innerHTML = forecastHTML;
-      }
-    });
-  }
   displayForecast(response);
 }
 function handleApiF(event) {
@@ -84,6 +84,7 @@ function handleApiF(event) {
     )}°F`;
     celsiusLink.classList.remove("active");
     fahrenheitLink.classList.add("active");
+    displayForecast(response);
   }
   let newCity = document.querySelector("#cityDisplay").innerHTML;
   let apiUrlF = `https://api.shecodes.io/weather/v1/forecast?query=${newCity}&key=${apiKey}&units=imperial`;

@@ -22,7 +22,7 @@ form {
   border-radius: 10px;
 }
 .active {
-  text-shadow: 2px 2px 5px blue;
+  text-shadow: 2px 2px 2px blue;
 }
 .card {
   display: block;
@@ -71,7 +71,7 @@ form {
 }
 #toCelsius:hover,
 #toFahrenheit:hover {
-  text-shadow: 2px 2px 3px blue;
+  text-shadow: 2px 2px 2px blue;
 }
 #cityDisplay {
   color: gray;

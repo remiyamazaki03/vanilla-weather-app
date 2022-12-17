@@ -3,31 +3,31 @@ let cityInput = document.querySelector("#city");
 let cityDisplay = document.querySelector("#cityDisplay");
 let countryDisplay = document.querySelector("#countryDisplay");
 let weatherDisplay = document.querySelector("#weatherDisplay");
-let iconDisplay = document.querySelector("#icon");
+let iconDisplay = document.querySelector("#iconToday");
 let average = document.querySelector("#average");
 let high = document.querySelector("#highToday");
 let low = document.querySelector("#lowToday");
 let celsiusLink = document.querySelector("#toCelsius");
 let fahrenheitLink = document.querySelector("#toFahrenheit");
+let months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 function formatDate() {
   let today = new Date();
   let minute = today.getMinutes().toString().padStart(2, "0");
   let hour = today.getHours();
   let date = today.getDate();
-  let months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
   let month = months[today.getMonth()];
   let timestamp = document.querySelector("#timeDisplay");
   timestamp.innerHTML = `Last updated: ${month} ${date}, ${hour}:${minute}`;
@@ -36,7 +36,6 @@ function handleApi(event) {
   event.preventDefault();
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityInput.value}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemp);
-  axios.get(apiUrl).then(showForecast);
 }
 function showTemp(response) {
   average.innerHTML = Math.round(response.data.daily[0].temperature.day);
@@ -46,13 +45,32 @@ function showTemp(response) {
   low.innerHTML = `${Math.round(response.data.daily[0].temperature.minimum)}°C`;
   cityDisplay.innerHTML = `${response.data.city}, ${response.data.country}`;
   weatherDisplay.innerHTML = response.data.daily[0].condition.description;
-  iconDisplay.setAttribute(
-    "src",
-    `https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.daily[0].condition.icon}.png`
-  );
+  iconDisplay.setAttribute("src", response.data.daily[0].condition.icon_url);
   iconDisplay.setAttribute("alt", response.data.daily[0].condition.description);
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
+  function displayForecast(response) {
+    let weeklyForecast = response.data.daily;
+    let forecastDisplay = document.querySelector("#weeklyForecast");
+    let forecastHTML = "";
+    weeklyForecast.forEach(function (date, index) {
+      if (index < 6) {
+        forecastHTML =
+          forecastHTML +
+          `<div class="col-2"><img src="${
+            date.condition.icon_url
+          }" alt="weather icon" class="icon"><br>${convertTimestamp(
+            date.time
+          )}<br><span class="high">${Math.round(
+            date.temperature.maximum
+          )}° </span>|<span class="low"> ${Math.round(
+            date.temperature.minimum
+          )}°</span></div>`;
+        forecastDisplay.innerHTML = forecastHTML;
+      }
+    });
+  }
+  displayForecast(response);
 }
 function handleApiF(event) {
   event.preventDefault();
@@ -86,31 +104,11 @@ function currentLocation() {
   }
   navigator.geolocation.getCurrentPosition(inputLocation);
 }
-function showForecast() {
-  function displayForecast(response) {
-    let weeklyForecast = response.data.daily;
-    let forecastDisplay = document.querySelector("#weeklyForecast");
-    let forecastHTML = "";
-    weeklyForecast.forEach(function (date, index) {
-      if (index < 6) {
-        forecastHTML =
-          forecastHTML +
-          `<div class="col-2"><img src="${
-            date.condition.icon_url
-          }" alt="weather icon" class="icon"><br>${
-            date.time
-          }<br><span class="high">${Math.round(
-            date.temperature.maximum
-          )}</span>/<span class="low">${Math.round(
-            date.temperature.minimum
-          )}</span></div>`;
-        forecastDisplay.innerHTML = forecastHTML;
-      }
-    });
-  }
-
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityInput.value}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
+function convertTimestamp(timestamp) {
+  let forecastDate = new Date(timestamp * 1000);
+  let date = forecastDate.getDate();
+  let month = months[forecastDate.getMonth()];
+  return `${month} ${date}`;
 }
 formatDate();
 document.querySelector("#enterCity").addEventListener("submit", handleApi);

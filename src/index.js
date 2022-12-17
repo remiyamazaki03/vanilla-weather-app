@@ -72,32 +72,16 @@ function handleApiF(event) {
 }
 function handleApiC(event) {
   event.preventDefault();
-  function toCelsius(response) {
-    average.innerHTML = Math.round(response.data.daily[0].temperature.day);
-    high.innerHTML = `${Math.round(
-      response.data.daily[0].temperature.maximum
-    )}°C`;
-    low.innerHTML = `${Math.round(
-      response.data.daily[0].temperature.minimum
-    )}°C`;
-    celsiusLink.classList.add("active");
-    fahrenheitLink.classList.remove("active");
-  }
   let newCity = document.querySelector("#cityDisplay").innerHTML;
   let apiUrlC = `https://api.shecodes.io/weather/v1/forecast?query=${newCity}&key=${apiKey}&units=metric`;
-  axios.get(apiUrlC).then(toCelsius);
+  axios.get(apiUrlC).then(showTemp);
 }
 function currentLocation() {
   function inputLocation(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
     let apiUrlLL = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
-    function convertCity(response) {
-      newCity = response.data.city;
-      let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${newCity}&key=${apiKey}&units=metric`;
-      axios.get(apiUrl).then(showTemp);
-    }
-    axios.get(apiUrlLL).then(convertCity);
+    axios.get(apiUrlLL).then(showTemp);
   }
   navigator.geolocation.getCurrentPosition(inputLocation);
 }

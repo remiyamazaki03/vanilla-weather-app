@@ -7,8 +7,7 @@ p {
 }
 form {
   padding-top: 80px;
-  padding-left: 60px;
-  max-width: 600px;
+  width: 35rem;
   display: block;
   margin: 0 auto;
 }
@@ -27,8 +26,9 @@ form {
 .card {
   display: block;
   margin: 0 auto;
-  position: relative;
-  top: -20px;
+  margin-top: 20px;
+  padding: 15px;
+  width: 35rem;
 }
 .forecast {
   text-align: center;
@@ -52,18 +52,6 @@ form {
   position: relative;
   left: -20px;
 }
-#current {
-  display: block;
-  margin: 0 auto;
-  margin-top: 20px;
-  position: relative;
-  top: -58px;
-  left: 196px;
-}
-#search {
-  position: relative;
-  left: 5px;
-}
 #toCelsius,
 #toFahrenheit {
   color: blue;
@@ -81,4 +69,9 @@ form {
 }
 #weatherDisplay:first-letter {
   text-transform: capitalize;
+}
+#search,
+#current {
+  display: block;
+  margin: 0 auto;
 }

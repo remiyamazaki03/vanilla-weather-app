@@ -36,6 +36,7 @@ function handleApi(event) {
   event.preventDefault();
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityInput.value}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemp);
+  axios.get(apiUrl).then(showForecast);
 }
 function showTemp(response) {
   average.innerHTML = Math.round(response.data.daily[0].temperature.day);
@@ -86,18 +87,29 @@ function currentLocation() {
   navigator.geolocation.getCurrentPosition(inputLocation);
 }
 function showForecast() {
-  let dates = ["22", "23", "24"];
-  let forecastDisplay = document.querySelector("#weeklyForecast");
-  let forecastHTML = "";
-  dates.forEach(function (date) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2">☀️<br>Oct ${date}<br><span class="high">18</span>/<span class="low">12</span></div>`;
-    forecastDisplay.innerHTML = forecastHTML;
-  });
+  function displayForecast(response) {
+    let weeklyForecast = response.data.daily;
+    let forecastDisplay = document.querySelector("#weeklyForecast");
+    let forecastHTML = "";
+    weeklyForecast.forEach(function (date) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2"><img src="${
+          date.condition.icon_url
+        }" alt="weather icon"><br>${
+          date.time
+        }<br><span class="high">${Math.round(
+          date.temperature.maximum
+        )}</span>/<span class="low">${Math.round(
+          date.temperature.minimum
+        )}</span></div>`;
+      forecastDisplay.innerHTML = forecastHTML;
+    });
+  }
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityInput.value}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 formatDate();
-showForecast();
 document.querySelector("#enterCity").addEventListener("submit", handleApi);
 document.querySelector("#toCelsius").addEventListener("click", handleApiC);
 document.querySelector("#toFahrenheit").addEventListener("click", handleApiF);

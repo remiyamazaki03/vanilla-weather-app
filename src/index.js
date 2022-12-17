@@ -4,6 +4,7 @@ let cityDisplay = document.querySelector("#cityDisplay");
 let countryDisplay = document.querySelector("#countryDisplay");
 let weatherDisplay = document.querySelector("#weatherDisplay");
 let iconDisplay = document.querySelector("#iconToday");
+let windDisplay = document.querySelector("#windSpeed");
 let average = document.querySelector("#average");
 let high = document.querySelector("#highToday");
 let low = document.querySelector("#lowToday");
@@ -68,6 +69,7 @@ function showTemp(response) {
   weatherDisplay.innerHTML = response.data.daily[0].condition.description;
   iconDisplay.setAttribute("src", response.data.daily[0].condition.icon_url);
   iconDisplay.setAttribute("alt", response.data.daily[0].condition.description);
+  windDisplay.innerHTML = `${Math.round(response.data.daily[0].wind.speed)}m/s`;
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
   displayForecast(response);

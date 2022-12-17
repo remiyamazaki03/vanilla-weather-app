@@ -45,6 +45,11 @@
             <div class="row">
               <div class="col-8" id="cityDisplay">Enter a city</div>
               <div class="col-4">
+                <div class="row align-items-center">
+                  <div class="labels">
+                    &nbsp;Wind Speed: <span id="windSpeed"></span>
+                  </div>
+                </div>
                 <img
                   src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
                   alt="weather icon"
@@ -53,12 +58,14 @@
                 />
               </div>
             </div>
-            <p class="card-text">
-              <span id="average">0</span><a href="#" id="toCelsius">°C</a> |
-              <a href="#" id="toFahrenheit">°F</a> (
-              <span class="high" id="highToday">0°C</span> |
-              <span class="low" id="lowToday">0°C</span> )
-            </p>
+            <div class="row card-text">
+              <div class="col-8 today">
+                <span id="average">0</span><a href="#" id="toCelsius">°C</a> |
+                <a href="#" id="toFahrenheit">°F</a> (
+                <span class="high" id="highToday">0°C</span> |
+                <span class="low" id="lowToday">0°C</span> )
+              </div>
+            </div>
             <div class="forecast">
               <div class="row" id="weeklyForecast"></div>
             </div>

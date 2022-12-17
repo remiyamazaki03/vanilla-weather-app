@@ -2,9 +2,6 @@ body {
   background-color: rgba(248, 212, 255, 0.769);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-p {
-  font-size: x-large;
-}
 form {
   padding-top: 80px;
   max-width: 35rem;
@@ -30,12 +27,17 @@ form {
   padding: 15px;
   max-width: 35rem;
 }
+.today {
+  font-size: x-large;
+}
 .forecast {
   text-align: center;
   font-size: 12px;
 }
 .labels {
   color: gray;
+  font-size: 16px;
+  padding: 5px;
 }
 .link {
   text-align: center;

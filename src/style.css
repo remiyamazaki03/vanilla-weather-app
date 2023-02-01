@@ -1,5 +1,12 @@
+:root {
+  --brand-color: #be3144;
+  --secondary-color: #3a4750;
+  --main-background-color: #d3d6db;
+  --shadow-color: #303841;
+}
+
 body {
-  background-color: rgba(248, 212, 255, 0.769);
+  background-color: var(--secondary-color);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 form {
@@ -13,8 +20,8 @@ form {
   margin: 0 auto;
   margin-top: 60px;
   padding: 30px 0px 30px 0px;
-  background-color: white;
-  border: 1px solid rgba(216, 218, 214, 0.5);
+  background-color: var(--shadow-color);
+  border: 1px solid var(--brand-color);
   border-radius: 10px;
 }
 .active {
@@ -26,6 +33,8 @@ form {
   margin-top: 20px;
   padding: 15px;
   max-width: 35rem;
+  background-color: var(--main-background-color);
+  border: 1px solid var(--brand-color);
 }
 .today {
   font-size: x-large;
@@ -35,13 +44,22 @@ form {
   font-size: 12px;
 }
 .labels {
-  color: gray;
+  color: var(--shadow-color);
+  opacity: 0.7;
   font-size: 16px;
   padding: 5px;
 }
+.links {
+  color: var(--brand-color);
+  opacity: 0.7;
+}
 .link {
-  text-align: center;
-  padding: 20px;
+  text-decoration: none;
+  color: var(--brand-color);
+}
+.link:hover {
+  color: var(--brand-color);
+  text-shadow: 2px 2px 2px var(--brand-color);
 }
 .high {
   color: red;
@@ -61,10 +79,15 @@ form {
 }
 #toCelsius:hover,
 #toFahrenheit:hover {
-  text-shadow: 2px 2px 2px blue;
+  text-shadow: 2px 2px 2px var(--shadow-color);
+}
+#city {
+  background-color: var(--main-background-color);
+  border: 1px solid var(--brand-color);
 }
 #cityDisplay {
-  color: gray;
+  color: var(--shadow-color);
+  opacity: 0.7;
   padding: 20px 0px 20px 5px;
   font-size: 42px;
   line-height: 1.5;
@@ -72,8 +95,13 @@ form {
 #weatherDisplay:first-letter {
   text-transform: capitalize;
 }
-#search,
-#current {
+.button {
   display: block;
   margin: 0 auto;
+  background-color: var(--brand-color);
+  color: var(--shadow-color);
+}
+.button:hover {
+  background-color: var(--brand-color);
+  opacity: 0.7;
 }

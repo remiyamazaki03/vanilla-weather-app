@@ -31,7 +31,7 @@ function formatDate() {
   let date = today.getDate();
   let month = months[today.getMonth()];
   let timestamp = document.querySelector("#timeDisplay");
-  timestamp.innerHTML = `Today: ${month} ${date}, ${hour}:${minute}`;
+  timestamp.innerHTML = `Today is ${month} ${date}, ${hour}:${minute}`;
 }
 function handleApi(event) {
   event.preventDefault();

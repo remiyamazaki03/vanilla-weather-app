@@ -4,13 +4,17 @@
   --main-background-color: #d3d6db;
   --shadow-color: #303841;
 }
-
+h1 {
+  color: #fdffabcc;
+  font-family: "Press Start 2P", cursive;
+  text-shadow: 2px 5px 5px #bae8e8, -2px -2px 2px var(--brand-color);
+}
 body {
   background-color: var(--secondary-color);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 form {
-  padding-top: 80px;
+  padding: 20px;
   max-width: 35rem;
   display: block;
   margin: 0 auto;
@@ -25,7 +29,7 @@ form {
   border-radius: 10px;
 }
 .active {
-  text-shadow: 2px 2px 2px blue;
+  text-shadow: 1px 1px 1px var(--shadow-color);
 }
 .card {
   display: block;

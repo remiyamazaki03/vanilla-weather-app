@@ -4,7 +4,7 @@
   --main-background-color: #d3d6db;
   --shadow-color: #303841;
 }
-h1 {
+.header {
   color: #fdffabcc;
   font-family: "Press Start 2P", cursive;
   text-shadow: 2px 5px 5px #bae8e8, -2px -2px 2px var(--brand-color);
@@ -58,7 +58,6 @@ form {
   opacity: 0.7;
 }
 .link {
-  text-decoration: none;
   color: var(--brand-color);
 }
 .link:hover {
@@ -108,4 +107,14 @@ form {
 .button:hover {
   background-color: var(--brand-color);
   opacity: 0.7;
+}
+@media (max-width: 760px) {
+  .vanilla-weather-app {
+    margin-top: 15px;
+    background-color: var(--secondary-color);
+    border: none;
+  }
+  .card {
+    margin-top: 0px;
+  }
 }

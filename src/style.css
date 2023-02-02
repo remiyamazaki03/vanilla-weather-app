@@ -103,6 +103,9 @@ form {
   opacity: 0.7;
 }
 @media (max-width: 760px) {
+  h3 {
+    font-size: 18px;
+  }
   .vanilla-weather-app {
     margin-top: 15px;
     background-color: var(--secondary-color);
@@ -110,6 +113,5 @@ form {
   }
   .card {
     margin-top: 0px;
-    padding: 0;
   }
 }

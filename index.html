@@ -45,31 +45,34 @@
         <br />
         <div class="card">
           <div class="card-body">
-            <div class="row labels">
-              <div class="col-8 ps-1" id="timeDisplay">Oct 26 12:36</div>
-              <div class="col-4 d-none d-md-block" id="weatherDisplay"></div>
-            </div>
             <div class="row">
-              <h1 class="col-8 ps-2" id="cityDisplay">Enter a city</h1>
-              <div class="col-4">
-                <div class="row align-items-center">
-                  <div class="labels d-none d-md-block" id="windSpeed"></div>
-                </div>
+              <div class="col-8 d-flex flex-column">
+                <div class="ps-2 labels" id="timeDisplay">Oct 26 12:36</div>
+                <h1 class="align-bottom" id="cityDisplay">Enter a city</h1>
+              </div>
+              <div class="col-4 d-flex flex-column">
+                <div class="labels" id="windSpeed"></div>
+                <div class="labels d-none d-md-block" id="weatherDisplay"></div>
                 <img
                   src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
                   alt="weather icon"
-                  class="icon"
+                  class="icon img-fluid"
                   id="iconToday"
                 />
               </div>
             </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="row align-items-center"></div>
+              </div>
+            </div>
             <div class="row card-text">
-              <h3>
+              <h4>
                 <span id="average">0</span><a href="#" id="toCelsius">°C</a> |
                 <a href="#" id="toFahrenheit">°F</a> (
                 <span class="high" id="highToday">0°C</span> |
                 <span class="low" id="lowToday">0°C</span> )
-              </h3>
+              </h4>
             </div>
             <div class="forecast">
               <div class="row" id="weeklyForecast"></div>

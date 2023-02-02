@@ -33,7 +33,7 @@
               />
             </div>
             <div class="col-md-2">
-              <button type="submit" class="btn button my-2 my-md-0">
+              <button type="submit" class="btn button my-3 my-md-0">
                 Search
               </button>
             </div>
@@ -47,15 +47,13 @@
           <div class="card-body">
             <div class="row labels">
               <div class="col-8 ps-1" id="timeDisplay">Oct 26 12:36</div>
-              <div class="col-4" id="weatherDisplay"></div>
+              <div class="col-4 d-none d-md-block" id="weatherDisplay"></div>
             </div>
             <div class="row">
               <h1 class="col-8 ps-2" id="cityDisplay">Enter a city</h1>
               <div class="col-4">
                 <div class="row align-items-center">
-                  <div class="labels">
-                    <span id="windSpeed"></span>
-                  </div>
+                  <div class="labels d-none d-md-block" id="windSpeed"></div>
                 </div>
                 <img
                   src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
@@ -66,12 +64,12 @@
               </div>
             </div>
             <div class="row card-text">
-              <div class="col-8 today">
+              <h3>
                 <span id="average">0</span><a href="#" id="toCelsius">°C</a> |
                 <a href="#" id="toFahrenheit">°F</a> (
                 <span class="high" id="highToday">0°C</span> |
                 <span class="low" id="lowToday">0°C</span> )
-              </div>
+              </h3>
             </div>
             <div class="forecast">
               <div class="row" id="weeklyForecast"></div>

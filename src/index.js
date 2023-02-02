@@ -46,7 +46,7 @@ function displayForecast(response) {
     if (index < 6) {
       forecastHTML =
         forecastHTML +
-        `<div class="col-2"><img src="${
+        `<div class="col-4 col-md-2 text-start text-md-center"><img src="${
           date.condition.icon_url
         }" alt="weather icon" class="icon"><br>${convertTimestamp(
           date.time

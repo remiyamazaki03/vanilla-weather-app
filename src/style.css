@@ -40,9 +40,6 @@ form {
   background-color: var(--main-background-color);
   border: 1px solid var(--brand-color);
 }
-.today {
-  font-size: x-large;
-}
 .forecast {
   text-align: center;
   font-size: 12px;
@@ -92,8 +89,6 @@ form {
   color: var(--shadow-color);
   opacity: 0.7;
   padding: 20px 0px 20px 5px;
-  font-size: 42px;
-  line-height: 1.5;
 }
 #weatherDisplay:first-letter {
   text-transform: capitalize;
